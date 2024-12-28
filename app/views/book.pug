@@ -1,0 +1,73 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href="https://www.w3schools.com/w3css/4/w3.css")
+        link(rel="stylesheet", href="/css/font-awesome-4.7.0/css/font-awesome.min.css")
+        title=name
+    body 
+        div.w3-container.w3-blue.w3-center
+            h1.w3-wide.w3-col Библиотека
+        div.w3-container.w3-indigo
+            button(onclick="location.href=`/library`").w3-cell.w3-left.w3-round-xxlarge.w3-blue.w3-margin
+                i.fa.fa-backward  Список книг
+        div.w3-container.w3-row.w3-margin.w3-padding-large
+            div(class="w3-col s2").w3-container
+            div(class="w3-col s3").w3-container
+                img.w3-image(src="/covers/" + cover)
+            div(class="w3-col s6").w3-container.w3-blue.w3-border.w3-round-xxlarge
+                h1.w3-center=name
+                h2="Автор: " + author
+                h2="Дата создания: " + date
+                h2="Наличие: " + inLibrary
+                h2="Текущий читатель: " + reader
+                h2="Дата возврата: " + returnDate
+                div.w3-container.w3-left.w3-cell-row
+                    div.w3-cell
+                        button(onclick="window.editDialog.showModal()").w3-round-xxlarge.w3-indigo.w3-margin.w3-padding-large
+                            h1
+                                i.fa.fa-pencil  Редактировать
+                        dialog(id="editDialog")
+                            button(onclick="window.editDialog.close()").w3-button.w3-red.w3-display-topright.w3-round-medium
+                                i.fa.fa-times
+                            form(action="/book/edit/" + id method="POST" enctype="multipart/form-data")
+                                div.w3-container.w3-serif.w3-center
+                                    h4.w3-margin Информация о книге:
+                                    h4.w3-margin Название:
+                                    input(required name="name" id="name" placeholder="Название книги" value=name).w3-round-medium
+                                    p
+                                    h4.w3-margin Автор:
+                                    input(required name="author" id="author" placeholder="Автор" value=author).w3-round-medium
+                                    p
+                                    h4.w3-margin Дата:
+                                    input(required type="date" id="date" name="date" value=date).w3-round-medium
+                                    p
+                                    h4.w3-margin Обложка:
+                                    input(type="file" name="photo").w3-border
+                                    p
+                                    button.w3-button.w3-green.w3-round-large.w3-border-black(type='Submit') Принять
+                    div.w3-cell
+                        -if(inLibrary === "Да")
+                            button(onclick="window.takeDialog.showModal()").w3-round-xxlarge.w3-indigo.w3-margin.w3-padding-large
+                                h1
+                                    i.fa.fa-book  Взять 
+                            dialog(id="takeDialog")
+                                button(onclick="window.takeDialog.close()").w3-button.w3-red.w3-display-topright.w3-round-medium
+                                    i.fa.fa-times
+                                form(action="/book/take/" + id method="POST")
+                                    div.w3-container.w3-serif.w3-center
+                                        i.fa.fa-address-card-o.fa-5x
+                                        h4 ФИО читателя:
+                                        input(required type="name" name="readerName" id="readerName").w3-round-medium
+                                        p 
+                                        h4 Дата возврата
+                                        input(required type="date" name="returnDate" id="returnDate").w3-round-medium
+                                        p
+                                        button.w3-button.w3-green.w3-round-large.w3-border-black(type='Submit') Принять
+                        -else
+                            form(action="/book/return/" + id method="POST")
+                                button(type='Submit').w3-round-xxlarge.w3-indigo.w3-margin.w3-padding-large
+                                    h1
+                                        i.fa.fa-book  Вернуть
+

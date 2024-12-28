@@ -1,0 +1,42 @@
+[
+  {
+    "id": 0,
+    "name": "Автостопом по галактике",
+    "author": "Дуглас Адамс",
+    "date": "1979-10-12",
+    "inLibrary": "Да",
+    "reader": "-",
+    "returnDate": "-",
+    "cover": "orig.webp"
+  },
+  {
+    "id": 1,
+    "name": "Остров Сокровищ",
+    "author": "Всеволод В.В.",
+    "date": "1875-02-01",
+    "inLibrary": "Нет",
+    "reader": "Всеволод Владимирович Карнаухов",
+    "returnDate": "2024-02-22",
+    "cover": "cover.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Мёртвые Души",
+    "author": "Николай Васильевич Гоголь",
+    "date": "1835-01-01",
+    "inLibrary": "Да",
+    "reader": "-",
+    "returnDate": "-",
+    "cover": "1005550497.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Тетрадь Смерти",
+    "author": "Рюк",
+    "date": "0001-01-01",
+    "inLibrary": "Нет",
+    "reader": "Лайт Ягами",
+    "returnDate": "9999-12-31",
+    "cover": "20200531192223!Dn_death_note.jpg"
+  }
+]

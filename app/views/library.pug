@@ -1,0 +1,70 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        
+        link(rel="stylesheet", href="https://www.w3schools.com/w3css/4/w3.css")
+        link(rel="stylesheet", href="/css/font-awesome-4.7.0/css/font-awesome.min.css")
+        title=title
+    body
+        script(src = "/js/ajax.js")
+        div.w3-container.w3-blue.w3-center
+            h1.w3-wide.w3-col Библиотека
+        div.w3-container.w3-indigo
+            button(onclick="window.addDialog.showModal()").w3-cell.w3-left.w3-round-xxlarge.w3-blue.w3-margin 
+                i.fa.fa-plus Добавить
+            dialog(id="addDialog")
+                button(onclick="window.addDialog.close()").w3-button.w3-red.w3-display-topright.w3-round-medium
+                    i.fa.fa-times
+                form(action="/new" method="POST")
+                    div.w3-container.w3-serif.w3-center
+                            h4.w3-margin Введите информацию о книге:
+                            h4.w3-margin Название:
+                            input(required name="name" id="name" placeholder="Название книги").w3-round-medium
+                            p
+                            h4.w3-margin Автор:
+                            input(required name="author" id="author" placeholder="Автор").w3-round-medium
+                            p
+                            h4.w3-margin Дата:
+                            input(required type="date" id="date" name="date").w3-round-medium
+                            p
+                            button.w3-button.w3-green.w3-round-large.w3-border-black(type='Submit') Принять
+            button(onclick="expired(this)" id="expired").w3-cell.w3-right.w3-round-xxlarge.w3-blue.w3-margin 
+                i.fa.fa-frown-o  Просрочены
+            button(onclick="available(this)" id="available").w3-cell.w3-right.w3-round-xxlarge.w3-blue.w3-margin 
+                i.fa.fa-archive  Наличие
+            button(onclick="allBooks(this)" id="allBooks").w3-cell.w3-right.w3-round-xxlarge.w3-blue.w3-margin 
+                i.fa.fa-book  Все книги
+            h3.w3-cell.w3-right.w3-margin-right Фильтры:
+        table.w3-table.w3-card-4.w3-margin-top
+            tr.w3-indigo.w3-border.w3-border-black
+                th id
+                th Название
+                th Автор
+                th Дата
+                th Наличие
+                th
+                th
+            each book in library
+                tr(id=book.id).w3-blue.w3-margin-top.w3-border.w3-border-black
+                    td #{book.id}
+                    td #{book.name}
+                    td #{book.author}
+                    td #{book.date}
+                    td #{book.inLibrary}
+                    td
+                        button(onclick="location.href='book/" + book.id + "';").w3-round-xxlarge.w3-indigo Выбрать
+                    td
+                        button(onclick="window.removeBook" + book.id + ".showModal()").w3-round-xxlarge.w3-red
+                            i.fa.fa-trash  Удалить
+                        dialog(id="removeBook" + book.id)
+                            form(action="/book/remove/" + book.id method="POST")
+                                h3 Вы уверены что хотите удалить данную книгу?
+                                div.w3-container.w3-center
+                                    button.w3-button.w3-green.w3-round-large.w3-border-black.w3-cell.w3-margin(type='Submit') Да
+                                    button(onclick="window.removeBook" + book.id + ".close()" type="reset").w3-button.w3-red.w3-round-large.w3-border-black.w3-cell.w3-margin Нет
+
+
+
+

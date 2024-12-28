@@ -1,0 +1,21 @@
+{
+  "name": "lr2",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "db:migrate": "sequelize-cli db:migrate",
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.1",
+    "express-fileupload": "^1.5.1",
+    "express-session": "^1.18.1",
+    "pg": "^8.13.1",
+    "pg-hstore": "^2.3.4",
+    "pug": "^3.0.3",
+    "sequelize": "^6.37.5",
+    "sequelize-cli": "^6.6.2"
+  }
+}
